@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var billTextField: UITextField!
+    @IBOutlet weak var tipTextField: UITextField!
+    
+    @IBOutlet weak var resultLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        billTextField.text = "0.0"
+        tipTextField.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +27,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func btnResult(_ sender: UIButton) {
+        let tip = CGFloat(Float(billTextField.text!)! * Float(tipTextField.text!)!) / 100
+        
+        let total = CGFloat(Float(tip) + Float(billTextField.text!)!)
+        
+        resultLabel.text = ("Tip = \(tip) | Total = \(total)")
+    }
+    
 }
 
