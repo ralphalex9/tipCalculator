@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        billTextField.keyboardType = UIKeyboardType.decimalPad
+        tipTextField.keyboardType = UIKeyboardType.decimalPad
+        
         billTextField.text = "0.0"
         tipTextField.text = "0"
     }
