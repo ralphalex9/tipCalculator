@@ -11,18 +11,17 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var billTextField: UITextField!
-    @IBOutlet weak var tipTextField: UITextField!
+    @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var tipResultLabel: UILabel!
+    @IBOutlet weak var priceResultLabel: UILabel!
     
-    @IBOutlet weak var resultLabel: UILabel!
+    var tipDefaultValue = 15
+    var billDefaultValue = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        billTextField.keyboardType = UIKeyboardType.decimalPad
-        tipTextField.keyboardType = UIKeyboardType.decimalPad
-        
-        billTextField.text = "0.0"
-        tipTextField.text = "0"
+        //billTextField.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,12 +30,52 @@ class ViewController: UIViewController {
     }
 
     @IBAction func btnResult(_ sender: UIButton) {
-        let tip = CGFloat(Float(billTextField.text!)! * Float(tipTextField.text!)!) / 100
+        //let tip = CGFloat(Float(billTextField.text!)! * Float(tipTextField.text!)!) / 100
         
-        let total = CGFloat(Float(tip) + Float(billTextField.text!)!)
+        //let total = CGFloat(Float(tip) + Float(billTextField.text!)!)
         
-        resultLabel.text = ("Tip = \(tip) | Total = \(total)")
+        //resultLabel.text = ("Tip = \(tip) | Total = \(total)")
+    }
+    @IBAction func calculResult(_ sender: UITextField) {
+        if billTextField.text != "" {
+            calculResult(billValue: billTextField.text!)
+        }
     }
     
+    @IBAction func segmentedTipControl(_ sender: UISegmentedControl) {
+        
+        switch tipControl.selectedSegmentIndex {
+            case 0:
+                //tipDefaultValue = 15
+                if billTextField.text != "" {
+                    calculResult(billValue: billTextField.text!)
+                }
+            
+            case 1:
+                tipDefaultValue = 20
+                if billTextField.text != "" {
+                    calculResult(billValue: billTextField.text!)
+                }
+            case 2:
+                tipDefaultValue = 22
+                if billTextField.text != "" {
+                    calculResult(billValue: billTextField.text!)
+                }
+            default:
+                //tipDefaultValue = 15
+                if billTextField.text != "" {
+                    calculResult(billValue: billTextField.text!)
+                }
+        }
+    }
+    
+    func calculResult(billValue: String) {
+        let tip = CGFloat(Float(billValue)! * Float(tipDefaultValue)) / 100
+        
+        let total = CGFloat(Float(tip) + Float(billValue)!)
+        
+        priceResultLabel.text = ("Total: $ \(String(format: "%.2f", total))")
+        tipResultLabel.text = ("Tip: \(tip) %")
+    }
 }
 
