@@ -29,16 +29,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func btnResult(_ sender: UIButton) {
-        //let tip = CGFloat(Float(billTextField.text!)! * Float(tipTextField.text!)!) / 100
-        
-        //let total = CGFloat(Float(tip) + Float(billTextField.text!)!)
-        
-        //resultLabel.text = ("Tip = \(tip) | Total = \(total)")
-    }
     @IBAction func calculResult(_ sender: UITextField) {
         if billTextField.text != "" {
             calculResult(billValue: billTextField.text!)
+        }else{
+            priceResultLabel.text = ""
+            tipResultLabel.text = ""
         }
     }
     
@@ -46,25 +42,36 @@ class ViewController: UIViewController {
         
         switch tipControl.selectedSegmentIndex {
             case 0:
-                //tipDefaultValue = 15
+                tipDefaultValue = 15
                 if billTextField.text != "" {
                     calculResult(billValue: billTextField.text!)
+                }else{
+                    priceResultLabel.text = ""
+                    tipResultLabel.text = ""
                 }
-            
             case 1:
                 tipDefaultValue = 20
                 if billTextField.text != "" {
                     calculResult(billValue: billTextField.text!)
+                }else{
+                    priceResultLabel.text = ""
+                    tipResultLabel.text = ""
                 }
             case 2:
                 tipDefaultValue = 22
                 if billTextField.text != "" {
                     calculResult(billValue: billTextField.text!)
+                }else{
+                    priceResultLabel.text = ""
+                    tipResultLabel.text = ""
                 }
             default:
                 //tipDefaultValue = 15
                 if billTextField.text != "" {
                     calculResult(billValue: billTextField.text!)
+                }else{
+                    priceResultLabel.text = ""
+                    tipResultLabel.text = ""
                 }
         }
     }
@@ -74,8 +81,8 @@ class ViewController: UIViewController {
         
         let total = CGFloat(Float(tip) + Float(billValue)!)
         
-        priceResultLabel.text = ("Total: $ \(String(format: "%.2f", total))")
-        tipResultLabel.text = ("Tip: \(tip) %")
+        priceResultLabel.text = ("Total to bay: $ \(String(format: "%.2f", total))")
+        tipResultLabel.text = ("Tip Amount: $ \(tip)")
     }
 }
 
